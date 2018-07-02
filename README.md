@@ -1,0 +1,1 @@
+A discord.js bot to determine who posted first in a guild

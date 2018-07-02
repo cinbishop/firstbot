@@ -1,0 +1,25 @@
+{
+  "name": "firstbot",
+  "version": "1.0.0",
+  "description": "a bot to determine who was first",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cinbishop/firstbot.git"
+  },
+  "author": "Jacob Fox",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cinbishop/firstbot/issues"
+  },
+  "homepage": "https://github.com/cinbishop/firstbot#readme",
+  "dependencies": {
+    "discord.js": "11.3.2",
+    "enmap": "2.6.3",
+    "enmap-sqlite": "2.0.3",
+    "node-schedule": "1.3.0"
+  }
+}
