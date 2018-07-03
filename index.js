@@ -19,8 +19,8 @@ client.on("ready" , () => {
 	client.user.setActivity('!help for a list of commands', { type: 'PLAYING' });
 	client.functions.resetChron();
 	client.functions.setCurrentDate();
-	client.firstdata.set('lastFirstDate','0');
-});
+	client.firstdata.has('lastFirstDate') ? '' : client.firstdata.set('lastFirstDate','0');
+;});
 
 fs.readdir("./events/", (err, files) => {
 	if (err) return console.log(err);
@@ -42,10 +42,6 @@ fs.readdir("./commands/", (err,files) => {
 		console.log(`Attempting to load command ${commandName}`);
 		client.commands.set(commandName, props);
 	});
-});
-
-var resetFirst = Schedule.scheduleJob('59 23 * * *', function(){
-	console.log('test');
 });
 
 client.functions = functions;
