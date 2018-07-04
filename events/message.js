@@ -1,8 +1,10 @@
 module.exports = (client, message) => {
 	if (message.author.bot) return;
 
+	const currentDate = client.dates.get('currentDate');
+	const lastFirstDate = client.dates.get('lastFirstDate');
 
-	if((client.firstdata.get('currentDate') != client.firstdata.get('lastFirstDate')) && message.content.toLowerCase().includes('first')) {
+	if((currentDate != lastFirstDate) && message.content.toLowerCase().includes('first')) {
 		client.functions.isFirst(message);
 		message.channel.send('Yous Is First!');
 	} 

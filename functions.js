@@ -2,13 +2,13 @@ module.exports = function (client) {
 	var functions = {};
 
 	functions.setCurrentDate = function() {
-		let currentDate = new Date().getMonth() + '/' + new Date().getDate();
-		client.firstdata.set('currentDate', currentDate);
+		const currentDate = new Date().getMonth() + '/' + new Date().getDate();
+		client.dates.set('currentDate', currentDate);
 	};
 
 	functions.setLastFirstDate = function() {
-		let date = new Date().getMonth() + '/' + new Date().getDate();
-		client.firstdata.set('lastFirstDate', date);
+		const date = new Date().getMonth() + '/' + new Date().getDate();
+		client.dates.set('lastFirstDate', date);
 	};
 
 	functions.isFirst = function(message) {
@@ -21,13 +21,18 @@ module.exports = function (client) {
 			});
 		}
 
-		let currentFirsts = client.firstdata.getProp(key, 'firsts');
-		client.firstdata.setProp(key, 'firsts', ++currentFirsts);
+		let totalFirsts = client.firstdata.getProp(key, 'firsts');
+		client.firstdata.setProp(key, 'firsts', ++totalFirsts);
 		client.functions.setLastFirstDate();
 	}
 
+	functions.getLeaderboard = function(message) {
+		const leaderboard = client.firstdata.fetchAll();
+		console.log(leaderboard);
+	}
+
 	functions.resetChron = function() {
-		let chron = client.schedule.scheduleJob('0 0 * * *', function(){
+		const chron = client.schedule.scheduleJob('0 0 * * *', function(){
 			client.functions.setCurrentDate();
 		});
 	}

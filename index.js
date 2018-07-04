@@ -11,6 +11,7 @@ const config = require("./auth.json");
 client.schedule = Schedule;
 client.config = config;
 client.firstdata = new Enmap({provider: new Provider({name: "firstdata"})});
+client.dates = new Enmap({provider: new Provider({name: "dates"})});
 
 const functions = require("./functions.js")(client);
 
@@ -19,7 +20,7 @@ client.on("ready" , () => {
 	client.user.setActivity('!help for a list of commands', { type: 'PLAYING' });
 	client.functions.resetChron();
 	client.functions.setCurrentDate();
-	client.firstdata.has('lastFirstDate') ? '' : client.firstdata.set('lastFirstDate','0');
+	client.dates.has('lastFirstDate') ? '' : client.dates.set('lastFirstDate','0');
 ;});
 
 fs.readdir("./events/", (err, files) => {
