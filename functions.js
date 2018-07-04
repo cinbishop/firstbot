@@ -40,7 +40,7 @@ module.exports = function (client) {
 			  .setFooter(client.functions.randomNote(client.notes.footerNotes));
 			for(const data of leaderboard) {
 				count++;
-				let note = '';
+				const note = '';
 				if(count == 1) {
 					note = client.functions.randomNote(client.notes.happyNotes);
 				} else {
@@ -48,9 +48,6 @@ module.exports = function (client) {
 				}
 			  	botresponse.addField(`${data.user} : ${data.firsts}`, note);
 			}
-		// for(const data of leaderboard) {
-		// 	botresponse += data.user + ' : ' + data.firsts;
-		// }
 		return botresponse;
 	}
 
