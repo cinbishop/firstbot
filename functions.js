@@ -40,7 +40,7 @@ module.exports = function (client) {
 			  .setFooter(client.functions.randomNote(client.notes.footerNotes));
 			for(const data of leaderboard) {
 				count++;
-				const note = '';
+				let note = '';
 				if(count == 1) {
 					note = client.functions.randomNote(client.notes.happyNotes);
 				} else {
