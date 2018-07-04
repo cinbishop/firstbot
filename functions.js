@@ -35,7 +35,6 @@ module.exports = function (client) {
 		let count = 0;
 		const botresponse = new client.discord.RichEmbed()
 			  .setTitle("Leaderboard")
-			  //.setAuthor(client.user.username, client.user.avatarURL)
 			  .setDescription("All the firsts!")
 			  .setColor(0x00AE86)
 			  .setFooter(client.functions.randomNote(client.notes.footerNotes));
