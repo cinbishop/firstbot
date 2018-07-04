@@ -26,9 +26,33 @@ module.exports = function (client) {
 		client.functions.setLastFirstDate();
 	}
 
+	functions.randomNote = function(arr) {
+		return arr[Math.floor(Math.random() * arr.length)];
+	}
+
 	functions.getLeaderboard = function(message) {
-		const leaderboard = client.firstdata.fetchAll();
-		console.log(leaderboard);
+		const leaderboard = client.firstdata.array().sort((a,b) => a.firsts < b.firsts);
+		let count = 0;
+		const botresponse = new client.discord.RichEmbed()
+			  .setTitle("Leaderboard")
+			  //.setAuthor(client.user.username, client.user.avatarURL)
+			  .setDescription("Our top 10 points leaders!")
+			  .setColor(0x00AE86)
+			  .setFooter(client.functions.randomNote(client.notes.footerNotes));
+			for(const data of leaderboard) {
+				count++;
+				let note = '';
+				if(count == 1) {
+					note = client.functions.randomNote(client.notes.happyNotes);
+				} else {
+					note = client.functions.randomNote(client.notes.regularNotes);
+				}
+			  	botresponse.addField(`${data.user} : ${data.firsts}`, note);
+			}
+		// for(const data of leaderboard) {
+		// 	botresponse += data.user + ' : ' + data.firsts;
+		// }
+		return botresponse;
 	}
 
 	functions.resetChron = function() {

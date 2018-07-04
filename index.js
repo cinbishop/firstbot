@@ -9,11 +9,15 @@ const client = new Discord.Client();
 const config = require("./auth.json");
 
 client.schedule = Schedule;
+client.discord = Discord;
 client.config = config;
 client.firstdata = new Enmap({provider: new Provider({name: "firstdata"})});
 client.dates = new Enmap({provider: new Provider({name: "dates"})});
 
 const functions = require("./functions.js")(client);
+const notes = require("./notes.js")();
+
+client.notes = notes;
 
 client.on("ready" , () => {
 	console.log("Recording firsts.");
