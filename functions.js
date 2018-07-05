@@ -66,7 +66,7 @@ module.exports = function (client) {
 	}
 
 	functions.resetChron = function() {
-		const chron = client.schedule.scheduleJob('0 0 * * *', function(){
+		const chron = client.schedule.scheduleJob('0 3 * * *', function(){
 			client.functions.setCurrentDate();
 		});
 	}
