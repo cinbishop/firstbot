@@ -24,6 +24,7 @@ module.exports = function (client) {
 
 		let totalFirsts = client.firstdata.getProp(key, 'firsts');
 		client.dates.set('lastFirstUser',message.author.username);
+		client.dates.set('lastFirstId',message.author.id);
 		client.firstdata.setProp(key, 'firsts', ++totalFirsts);
 		client.functions.setLastFirstDate();
 	}
@@ -56,7 +57,11 @@ module.exports = function (client) {
 	functions.getLastFirst = function(message) {
 		const lastFirstUser = client.dates.get('lastFirstUser');
 		const lastFirstDate = client.dates.get('lastFirstDate');
-		let botresponse = `The last first was ${lastFirstUser} on ${lastFirstDate}, praise them!`;
+		const lastFirstId = client.dates.get('lastFirstId');
+		console.log(lastFirstId);
+		const totalFirsts = client.firstdata.getProp(lastFirstId);
+		console.log(totalFirsts);
+		let botresponse = `The last first was **${lastFirstUser}** on ${lastFirstDate}, they have **${totalFirsts.firsts}** total firsts. Praise them!`;
 		return botresponse;
 	}
 
