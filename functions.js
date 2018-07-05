@@ -56,8 +56,7 @@ module.exports = function (client) {
 	functions.getLastFirst = function(message) {
 		const lastFirstUser = client.dates.get('lastFirstUser');
 		const lastFirstDate = client.dates.get('lastFirstDate');
-		const totalFirsts = client.firstdata.getProp(message.author.id,'firsts');
-		let botresponse = `The last first was **${lastFirstUser}** on **${lastFirstDate}** and they have **${totalFirsts}** total firsts, praise them!`;
+		let botresponse = `The last first was ${lastFirstUser} on ${lastFirstDate}, praise them!`;
 		return botresponse;
 	}
 
