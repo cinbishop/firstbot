@@ -2,12 +2,13 @@ module.exports = function (client) {
 	var functions = {};
 
 	functions.setCurrentDate = function() {
-		const currentDate = new Date().getMonth() + '/' + new Date().getDate();
+		const currentDate = new Date().getMonth() + 1 + '/' + new Date().getDate();
+		console.log(currentDate);
 		client.dates.set('currentDate', currentDate);
 	};
 
 	functions.setLastFirstDate = function() {
-		const date = new Date().getMonth() + '/' + new Date().getDate();
+		const date = new Date().getMonth() + 1 + '/' + new Date().getDate();
 		client.dates.set('lastFirstDate', date);
 	};
 
@@ -22,6 +23,7 @@ module.exports = function (client) {
 		}
 
 		let totalFirsts = client.firstdata.getProp(key, 'firsts');
+		client.dates.set('lastFirstUser',message.author.username);
 		client.firstdata.setProp(key, 'firsts', ++totalFirsts);
 		client.functions.setLastFirstDate();
 	}
@@ -48,6 +50,14 @@ module.exports = function (client) {
 				}
 			  	botresponse.addField(`${data.user} : ${data.firsts}`, note);
 			}
+		return botresponse;
+	}
+
+	functions.getLastFirst = function(message) {
+		const lastFirstUser = client.dates.get('lastFirstUser');
+		const lastFirstDate = client.dates.get('lastFirstDate');
+		const totalFirsts = client.firstdata.getProp(message.author.id,'firsts');
+		let botresponse = `The last first was **${lastFirstUser}** on **${lastFirstDate}** and they have **${totalFirsts}** total firsts, praise them!`;
 		return botresponse;
 	}
 
