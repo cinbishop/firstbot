@@ -66,8 +66,13 @@ module.exports = function (client) {
 	}
 
 	functions.resetChron = function() {
-		const chron = client.schedule.scheduleJob('0 3 * * *', function(){
+		let randomReset = 3;
+		const chron = client.schedule.scheduleJob(`0 ${randomReset} * * *`, function(){
 			client.functions.setCurrentDate();
+		});
+		const reroll = client.schedule.scheduleJob('0 0 * * *', function(){
+			randomReset = Math.floor(Math.random()*3)+1;
+			chron.reschedule(`0 ${randomReset} * * *`);
 		});
 	}
 
