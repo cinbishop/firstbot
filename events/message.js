@@ -6,7 +6,7 @@ module.exports = (client, message) => {
 
 	if((currentDate != lastFirstDate) && message.content.toLowerCase().includes('first')) {
 		client.functions.isFirst(message);
-		message.channel.send('Yous Is First!');
+		message.channel.send(client.functions.randomNote(client.notes.happyNotes));
 	} 
 
 	if (message.content.indexOf(client.config.prefix) !==0) return;
