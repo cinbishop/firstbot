@@ -21,9 +21,9 @@ client.notes = notes;
 
 client.on("ready" , () => {
 	console.log("Recording firsts.");
-	client.user.setActivity('!help for a list of commands', { type: 'PLAYING' });
 	client.functions.resetChron();
 	client.functions.setCurrentDate();
+	client.functions.setHint(client.user);
 	client.dates.has('lastFirstDate') ? '' : client.dates.set('lastFirstDate','0');
 ;});
 
