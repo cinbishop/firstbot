@@ -30,6 +30,23 @@ module.exports = function (client) {
 		client.functions.setHint(client.user);
 	}
 
+	functions.getFirsts = function(message) {
+		const key = message.author.id;
+		const user = message.member.displayName;
+
+		let botresponse = '';
+
+		if(!client.firstdata.has(key)) {
+			botresponse = `${user.toUpperCase()}, DON'T YOU BOTHER ME YOU KNOW YOU AIN'T GOT NO FIRSTS`;
+		} else {
+			const firsts = client.firstdata.getProp(key,'firsts');
+			const user = message.member.displayName
+			botresponse = `${user} you have **${firsts}** first${firsts > 1 ? 's' : ''}`;
+		}
+
+		return botresponse
+	}
+
 	functions.randomNote = function(arr) {
 		return arr[Math.floor(Math.random() * arr.length)];
 	}
