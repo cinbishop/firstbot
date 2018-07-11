@@ -7,6 +7,14 @@ module.exports = (client, message) => {
 	if((currentDate != lastFirstDate) && message.content.toLowerCase().includes('first')) {
 		client.functions.isFirst(message);
 		message.channel.send(client.functions.randomNote(client.notes.happyNotes));
+	}
+
+	if(message.content.toLowerCase() == 'aint that right firstbot?') {
+		if(message.author.username == 'jacobfox') {
+			message.channel.send(client.functions.randomNote(client.notes.agreeNotes));
+		} else {
+			message.channel.send(`THAT'S MY PURSE! I DON'T KNOW YOU!`);
+		}
 	} 
 
 	if (message.content.indexOf(client.config.prefix) !==0) return;
