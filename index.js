@@ -23,7 +23,7 @@ client.on("ready" , () => {
 	console.log("Recording firsts.");
 	client.functions.resetChron();
 	client.functions.setCurrentDate();
-	client.functions.setHint(client.user);
+	client.functions.setHint();
 	client.dates.has('lastFirstDate') ? '' : client.dates.set('lastFirstDate','0');
 ;});
 
@@ -51,4 +51,4 @@ fs.readdir("./commands/", (err,files) => {
 
 client.functions = functions;
 
-client.login(config.token);
+client.login(config.tokendev);

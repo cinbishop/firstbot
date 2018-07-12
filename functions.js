@@ -27,7 +27,7 @@ module.exports = function (client) {
 		client.dates.set('lastFirstId',message.author.id);
 		client.firstdata.setProp(key, 'firsts', ++totalFirsts);
 		client.functions.setLastFirstDate();
-		client.functions.setHint(client.user);
+		client.functions.setHint();
 	}
 
 	functions.getFirsts = function(message) {
@@ -87,7 +87,7 @@ module.exports = function (client) {
 		let randomReset = 3;
 		const chron = client.schedule.scheduleJob(`0 ${randomReset} * * *`, function(){
 			client.functions.setCurrentDate();
-			client.functions.setHint(client.user);
+			client.functions.setHint();
 		});
 		const reroll = client.schedule.scheduleJob('0 0 * * *', function(){
 			randomReset = Math.floor(Math.random()*3)+1;
@@ -95,11 +95,11 @@ module.exports = function (client) {
 		});
 	}
 
-	functions.setHint = function(user) {
+	functions.setHint = function() {
 		const currentDate = client.dates.get('currentDate');
 		const lastFirstDate = client.dates.get('lastFirstDate');
 		if(currentDate != lastFirstDate) {
-			user.setActivity('You', { type: 'LISTENING' })
+			client.user.setActivity('You', { type: 'LISTENING' })
 				.then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
 				.catch(console.error);
 		} else {
