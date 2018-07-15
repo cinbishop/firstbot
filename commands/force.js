@@ -15,4 +15,14 @@ exports.run = (client, message, args) => {
 		lastFirstDate = client.dates.get('lastFirstDate');
 		message.channel.send(`Current Date: ${currentDate}\nLast First: ${lastFirstDate}`);
 	}
+
+	if(args == 'lastmessage' && allowed) {
+		const lastID = client.dates.get('lastFirstId');
+		const userData = client.firstdata.get(lastID);
+		if(userData.message) {
+			message.channel.send(`**${userData.user}** said, AND I QUOTE: '${userData.message}'`);
+		} else {
+			message.channel.send('It has been lost to the sands of time.');
+		}
+	}
 }

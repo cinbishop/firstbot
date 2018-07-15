@@ -18,7 +18,8 @@ module.exports = function (client) {
 		if(!client.firstdata.has(key)) {
 			client.firstdata.set(key,{
 				user: message.author.username,
-				firsts: 0
+				firsts: 0,
+				message: message.content
 			});
 		}
 
@@ -26,6 +27,7 @@ module.exports = function (client) {
 		client.dates.set('lastFirstUser',message.author.username);
 		client.dates.set('lastFirstId',message.author.id);
 		client.firstdata.setProp(key, 'firsts', ++totalFirsts);
+		client.firstdata.setProp(key, 'message', message.content);
 		client.functions.setLastFirstDate();
 		client.functions.setHint();
 	}
