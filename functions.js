@@ -30,7 +30,7 @@ module.exports = function (client) {
 		client.firstdata.setProp(key, 'message', message.content);
 		client.functions.setLastFirstDate();
 		client.functions.setHint();
-	}
+	};
 
 	functions.getFirsts = function(message) {
 		const key = message.author.id;
@@ -47,11 +47,26 @@ module.exports = function (client) {
 		}
 
 		return botresponse
-	}
+	};
+
+	functions.weightedRoll = function(min, max) {
+		return Math.round(max / (Math.random() * max + min));
+	};
 
 	functions.randomNote = function(arr) {
 		return arr[Math.floor(Math.random() * arr.length)];
-	}
+	};
+
+	functions.getLoot = function(roll) {
+		const loot = client.store.loot[roll - 1];
+		const prize = client.emojis.find("name",loot.prize)
+		const botresponse = new client.discord.RichEmbed()
+			.setTitle(`${loot.name}`)
+			.setColor(0x000000)
+			.addField(`${prize}`,`${loot.description}`)
+			.setFooter(`Enjoy your loot!`)
+		return botresponse;
+	};
 
 	functions.getLeaderboard = function(message) {
 		const leaderboard = client.firstdata.array().sort((a,b) => a.firsts < b.firsts);
@@ -62,17 +77,32 @@ module.exports = function (client) {
 			  .setColor(0x00AE86)
 			  .setFooter(client.functions.randomNote(client.notes.footerNotes));
 			for(const data of leaderboard) {
-				count++;
-				let note = '';
-				if(count == 1) {
-					note = client.functions.randomNote(client.notes.happyNotes);
-				} else {
-					note = client.functions.randomNote(client.notes.regularNotes);
+				if(data.firsts > 0) {
+					count++;
+					let note = '';
+					if(count == 1) {
+						note = client.functions.randomNote(client.notes.happyNotes);
+					} else {
+						note = client.functions.randomNote(client.notes.regularNotes);
+					}
+				  	botresponse.addField(`${data.user} : ${data.firsts}`, note);
 				}
-			  	botresponse.addField(`${data.user} : ${data.firsts}`, note);
 			}
 		return botresponse;
-	}
+	};
+
+	functions.getStore = function() {
+		const storefront = client.store.items
+		const botresponse = new client.discord.RichEmbed()
+			.setTitle("First Store")
+			.setDescription("Blow them firsts on somethin' sweet.")
+			.setColor(0x0B5394)
+			.setFooter('No refunds.')
+		for(const data of storefront) {
+			botresponse.addField(`${data.name}`,`${data.description}\nKeyword: ${data.keyword}\nFirsts: ${data.price}`);
+		}
+		return botresponse;
+	};
 
 	functions.getLastFirst = function(message) {
 		const lastFirstUser = client.dates.get('lastFirstUser');
@@ -83,7 +113,7 @@ module.exports = function (client) {
 		console.log(totalFirsts);
 		let botresponse = `The last first was **${lastFirstUser}** on ${lastFirstDate}, they have **${totalFirsts.firsts}** total firsts. Praise them!`;
 		return botresponse;
-	}
+	};
 
 	functions.resetChron = function() {
 		let randomReset = 3;
@@ -95,7 +125,7 @@ module.exports = function (client) {
 			randomReset = Math.floor(Math.random()*3)+1;
 			chron.reschedule(`0 ${randomReset} * * *`);
 		});
-	}
+	};
 
 	functions.setHint = function() {
 		const currentDate = client.dates.get('currentDate');
@@ -110,7 +140,7 @@ module.exports = function (client) {
 				.catch(console.error);
 		}
 		
-	}
+	};
 
 	return functions;
 }

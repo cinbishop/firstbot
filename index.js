@@ -7,10 +7,12 @@ const fs = require("fs");
 
 const client = new Discord.Client();
 const config = require("./auth.json");
+const store = require("./store.json");
 
 client.schedule = Schedule;
 client.discord = Discord;
 client.config = config;
+client.store = store;
 client.firstdata = new Enmap({provider: new Provider({name: "firstdata"})});
 client.dates = new Enmap({provider: new Provider({name: "dates"})});
 
@@ -51,4 +53,4 @@ fs.readdir("./commands/", (err,files) => {
 
 client.functions = functions;
 
-client.login(config.token);
+client.login(config.tokendev);
