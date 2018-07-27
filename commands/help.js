@@ -7,6 +7,8 @@ exports.run = (client, message, args) => {
 	botresponse += 'Returns the last recorded first.\n';
 	botresponse += '**!me**\n';
 	botresponse += 'Returns all of your recorded firsts.\n';
+	botresponse += '**!buy <store|product keyword>**\n';
+	botresponse += 'Spend your firsts at the first store!\n';
 
 	message.channel.send('DM Sent!');
 	message.author.send(botresponse);
