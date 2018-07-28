@@ -26,7 +26,6 @@ client.on("ready" , () => {
 	client.functions.resetChron();
 	client.functions.setCurrentDate();
 	client.functions.setHint();
-	client.firstdata.delete('soldFirsts');
 	client.dates.has('lastFirstDate') ? '' : client.dates.set('lastFirstDate','0');
 ;});
 
