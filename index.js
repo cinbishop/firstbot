@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const Enmap = require("enmap");
 const Provider = require("enmap-sqlite");
 const Schedule = require("node-schedule");
+const path = require('path');
 
 const fs = require("fs");
 
@@ -29,7 +30,7 @@ client.on("ready" , () => {
 	client.dates.has('lastFirstDate') ? '' : client.dates.set('lastFirstDate','0');
 ;});
 
-fs.readdir("./events/", (err, files) => {
+fs.readdir(path.join(__dirname,"events"), (err, files) => {
 	if (err) return console.log(err);
 	files.forEach(file => {
 		const event = require(`./events/${file}`);
@@ -40,7 +41,7 @@ fs.readdir("./events/", (err, files) => {
 
 client.commands = new Enmap();
 
-fs.readdir("./commands/", (err,files) => {
+fs.readdir(path.join(__dirname,"commands"), (err,files) => {
 	if (err) return console.log(err);
 	files.forEach(file => {
 		if(!file.endsWith(".js")) return;
@@ -53,4 +54,4 @@ fs.readdir("./commands/", (err,files) => {
 
 client.functions = functions;
 
-client.login(config.token);
+client.login(config.tokendev);
