@@ -7,8 +7,8 @@ exports.run = (client, message, args) => {
 	const hasFirsts = client.firstdata.has(key);
 	const totalFirsts = hasFirsts ? client.firstdata.getProp(key,'firsts') : 0;
 
-	const hasSoldFirsts = client.firstdata.has('soldFirsts');
-	if(!hasSoldFirsts) client.firstdata.set('soldFirsts',0);
+	const hasSoldFirsts = client.dates.has('soldFirsts');
+	if(!hasSoldFirsts) client.dates.set('soldFirsts',0);
 
 	if(args == 'store') {
 		const botresponse = client.functions.getStore();
@@ -18,9 +18,9 @@ exports.run = (client, message, args) => {
 	if(args == 'loot') {
 		if(totalFirsts > 0) {
 			const newFirsts = totalFirsts - 1;
-			const totalSoldFirsts = client.firstdata.get('soldFirsts');
+			const totalSoldFirsts = client.dates.get('soldFirsts');
 
-			client.firstdata.set('soldFirsts', totalSoldFirsts + 1);
+			client.dates.set('soldFirsts', totalSoldFirsts + 1);
 
 			client.firstdata.setProp(key,'firsts',newFirsts);
 
