@@ -24,12 +24,7 @@ exports.run = (client, message, args) => {
 
 			client.firstdata.setProp(key,'firsts',newFirsts);
 
-			const min = client.store.loot[0].weight;
-			const max = client.store.loot[client.store.loot.length-1].weight + 1;
-			const roll = client.functions.weightedRoll(min, max);
-
-			if(roll > max - 1) roll = max - 2;
-
+			const roll = client.functions.weightedRoll(client.store.loot);
 			const botresponse = client.functions.getLoot(roll);
 
 			message.channel.send(botresponse);

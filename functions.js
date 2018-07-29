@@ -49,16 +49,36 @@ module.exports = function (client) {
 		return botresponse
 	};
 
-	functions.weightedRoll = function(min, max) {
-		return Math.round(max / (Math.random() * max + min));
-	};
+	functions.weightedRoll = function(list) {
+		var weightsArr = [];
+		const reducer = (acc, cur) => acc + cur;
+
+		for(let i = 0; i < list.length; i++) {
+			weightsArr.push(list[i].weight);
+		}
+
+		const weightTotal = weightsArr.reduce(reducer);
+		const randomNum = Math.random() * weightTotal;
+
+		var weightSum = 0;
+
+
+		for(let i = 0; i < list.length; i++) {
+			weightSum += list[i].weight;
+			weightSum = +weightSum.toFixed(2);
+
+			if (randomNum <= weightSum) {
+				return list[i];
+			}
+		}
+		
+	};	
 
 	functions.randomNote = function(arr) {
 		return arr[Math.floor(Math.random() * arr.length)];
 	};
 
-	functions.getLoot = function(roll) {
-		const loot = client.store.loot[roll - 1];
+	functions.getLoot = function(loot) {
 		const prize = client.emojis.find("name",loot.prize)
 		const botresponse = new client.discord.RichEmbed()
 			.setTitle(`${loot.name}`)

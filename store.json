@@ -18,25 +18,25 @@
 			"name": "Nothing",
 			"description": "I'm not sure what you expected",
 			"prize": "doot",
-			"weight": 1
+			"weight": 0.5
 		},
 		{
 			"name": "Dusty Stick",
 			"description": "Not quite as good as a dusty branch, but better than a dusty twig.",
 			"prize": "stusty_dick",
-			"weight": 2
+			"weight": 0.2
 		},
 		{
 			"name": "Chaos Orb",
 			"description": "Ooo chaos orb",
 			"prize": "poe_chaos",
-			"weight": 3
+			"weight": 0.2
 		},
 		{
 			"name": "Exalted Orb",
 			"description": "Now SLAM that shit, son!",
 			"prize": "poe_exalt",
-			"weight": 4
+			"weight": 0.1
 		}
 	]
 }
