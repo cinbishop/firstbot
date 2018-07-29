@@ -28,7 +28,7 @@ exports.run = (client, message, args) => {
 			const max = client.store.loot[client.store.loot.length-1].weight + 1;
 			const roll = client.functions.weightedRoll(min, max);
 
-			if(roll > max) roll = max;
+			if(roll > max - 1) roll = max - 2;
 
 			const botresponse = client.functions.getLoot(roll);
 
