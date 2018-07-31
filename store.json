@@ -4,13 +4,7 @@
 			"name": "Lootbox",
 			"description": "It could be anything! It could even be a boat!",
 			"keyword":"loot",
-			"price": 1
-		},
-		{
-			"name": "Reset Alert",
-			"description": "Because everyone knows the last first is the best first.",
-			"keyword":"reset",
-			"price": 5
+			"price": 2
 		}
 	],
 	"loot": [

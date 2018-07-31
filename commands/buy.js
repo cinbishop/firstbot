@@ -5,10 +5,8 @@ exports.run = (client, message, args) => {
 	const key = message.author.id;
 
 	const hasFirsts = client.firstdata.has(key);
-	const totalFirsts = hasFirsts ? client.firstdata.getProp(key,'firsts') : 0;
 
-	const hasSoldFirsts = client.dates.has('soldFirsts');
-	if(!hasSoldFirsts) client.dates.set('soldFirsts',0);
+	const totalCoins = hasFirsts ? client.firstdata.getProp(key,'coins') : 0;
 
 	if(args == 'store') {
 		const botresponse = client.functions.getStore();
@@ -16,20 +14,19 @@ exports.run = (client, message, args) => {
 	}
 
 	if(args == 'loot') {
-		if(totalFirsts > 0) {
-			const newFirsts = totalFirsts - 1;
-			const totalSoldFirsts = client.dates.get('soldFirsts');
+		let storeItem = client.store.items.filter(obj => {return obj.keyword == args});
+		storeItem = storeItem[0];
+		if(totalCoins >= storeItem.price) {
+			const newCoins = totalCoins - storeItem.price;
 
-			client.dates.set('soldFirsts', totalSoldFirsts + 1);
-
-			client.firstdata.setProp(key,'firsts',newFirsts);
+			client.firstdata.setProp(key,'coins',newCoins);
 
 			const roll = client.functions.weightedRoll(client.store.loot);
 			const botresponse = client.functions.getLoot(roll);
 
 			message.channel.send(botresponse);
 		} else {
-			message.channel.send('Get out of here with ya non-first-havin ass!');
+			message.channel.send('Get out of here with ya non-schmeckle-havin ass!');
 		}
 	}
 

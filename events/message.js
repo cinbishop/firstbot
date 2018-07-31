@@ -6,7 +6,7 @@ module.exports = (client, message) => {
 
 	if((currentDate != lastFirstDate) && message.content.toLowerCase().includes('first')) {
 		client.functions.isFirst(message);
-		message.channel.send(client.functions.randomNote(client.notes.happyNotes));
+		message.channel.send(client.functions.randomNote(client.notes.happyNotes)+` (You've been awarded **100** schmeckles!)`);
 	}
 
 	if (message.content.indexOf(client.config.prefix) !==0) return;

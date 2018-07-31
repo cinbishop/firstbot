@@ -25,4 +25,15 @@ exports.run = (client, message, args) => {
 			message.channel.send('It has been lost to the sands of time.');
 		}
 	}
+
+	if(args == 'coins' && allowed) {
+		const keyArr = client.firstdata.keyArray();
+		keyArr.forEach(function(key) {
+			const firsts = client.firstdata.getProp(key,'firsts');
+			const user = client.firstdata.getProp(key,'user');
+			if(!client.firstdata.hasProp(key,'coins')) client.firstdata.setProp(key, 'coins', firsts * 100);
+			const coins = client.firstdata.getProp(key,'coins');
+			message.channel.send(`${user} given ${coins} schmeckles for ${firsts} firsts`);
+		}); 
+	}
 }

@@ -19,14 +19,18 @@ module.exports = function (client) {
 			client.firstdata.set(key,{
 				user: message.author.username,
 				firsts: 0,
-				message: message.content
+				message: message.content,
+				coins: 0
 			});
 		}
 
 		let totalFirsts = client.firstdata.getProp(key, 'firsts');
+		let totalCoins = client.firstdata.getProp(key, 'coins');
+
 		client.dates.set('lastFirstUser',message.author.username);
 		client.dates.set('lastFirstId',message.author.id);
 		client.firstdata.setProp(key, 'firsts', ++totalFirsts);
+		client.firstdata.setProp(key, 'coins', totalCoins + 100);
 		client.firstdata.setProp(key, 'message', message.content);
 		client.functions.setLastFirstDate();
 		client.functions.setHint();
@@ -42,8 +46,10 @@ module.exports = function (client) {
 			botresponse = `${user.toUpperCase()}, DON'T YOU BOTHER ME YOU KNOW YOU AIN'T GOT NO FIRSTS`;
 		} else {
 			const firsts = client.firstdata.getProp(key,'firsts');
-			const user = message.member.displayName
-			botresponse = `${user} you have **${firsts}** first${firsts > 1 ? 's' : ''}`;
+			const user = message.member.displayName;
+			const totalCoins = client.firstdata.getProp(key, 'coins');
+
+			botresponse = `${user} you have **${firsts}** first${firsts > 1 ? 's' : ''} and **${totalCoins}** schmeckle${totalCoins > 1 ? 's' : ''}`;
 		}
 
 		return botresponse
@@ -119,7 +125,7 @@ module.exports = function (client) {
 			.setColor(0x0B5394)
 			.setFooter('No refunds.')
 		for(const data of storefront) {
-			botresponse.addField(`${data.name}`,`${data.description}\nKeyword: ${data.keyword}\nFirsts: ${data.price}`);
+			botresponse.addField(`${data.name}`,`${data.description}\nKeyword: ${data.keyword}\nSchmeckles: ${data.price}`);
 		}
 		return botresponse;
 	};
