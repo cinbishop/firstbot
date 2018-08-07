@@ -85,11 +85,13 @@ module.exports = function (client) {
 	};
 
 	functions.getLoot = function(loot) {
-		const prize = client.emojis.find("name",loot.prize)
+		const prize = client.emojis.find("name",loot.prize);
+		const thumbURL = prize ? `https://cdn.discordapp.com/emojis/${prize.id}.png` : `https://placehold.it/50x50`;
 		const botresponse = new client.discord.RichEmbed()
 			.setTitle(`${loot.name}`)
 			.setColor(0x000000)
-			.addField(`${prize}`,`${loot.description}`)
+			.addField(`${loot.description}`, 'Enjoy your loot!')
+			.setThumbnail(`${thumbURL}`)
 			.setFooter(`Enjoy your loot!`)
 		return botresponse;
 	};

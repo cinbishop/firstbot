@@ -4,7 +4,7 @@
 			"name": "Lootbox",
 			"description": "It could be anything! It could even be a boat!",
 			"keyword":"loot",
-			"price": 2
+			"price": 10
 		}
 	],
 	"loot": [
@@ -12,25 +12,55 @@
 			"name": "Nothing",
 			"description": "I'm not sure what you expected",
 			"prize": "doot",
-			"weight": 0.5
+			"weight": 0.2
 		},
 		{
-			"name": "Dusty Stick",
-			"description": "Not quite as good as a dusty branch, but better than a dusty twig.",
-			"prize": "stusty_dick",
+			"name":"Nixon",
+			"description": "Headless body of Agnew not included. ARRRYOOOO.",
+			"prize": "nixon",
 			"weight": 0.2
+		},
+		{
+			"name": "Sausage In The Ear",
+			"description": "I have no idea what this emoji means. I don't think it is a sex thing.",
+			"prize": "sausage_in_ear",
+			"weight": 0.15
+		},
+		{
+			"name": "Tiny Steve",
+			"description": "Tiny steve is like big steve but smaller.",
+			"prize": "steve",
+			"weight": 0.1
+		},
+		{
+			"name": "Snorlax",
+			"description": "SHUT THE FUCK UP, DON'T MAKE FUN OF HIM. EXCUSE ME.",
+			"prize": "snorlax",
+			"weight": 0.05
 		},
 		{
 			"name": "Chaos Orb",
 			"description": "Ooo chaos orb",
 			"prize": "poe_chaos",
-			"weight": 0.2
+			"weight": 0.05
+		},
+		{
+			"name": "Doge",
+			"description": "Awh an adorable japanese dog. Remember, 1 Doge = 1 Doge!",
+			"prize": "doge",
+			"weight": 0.1
+		},
+		{
+			"name": "Racism",
+			"description": "Whoops. Now you're racist. Sorry about your luck!",
+			"prize": "confederate",
+			"weight": 0.1
 		},
 		{
 			"name": "Exalted Orb",
 			"description": "Now SLAM that shit, son!",
 			"prize": "poe_exalt",
-			"weight": 0.1
+			"weight": 0.05
 		}
 	]
 }
