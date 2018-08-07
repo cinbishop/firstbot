@@ -92,7 +92,6 @@ module.exports = function (client) {
 			.setColor(0x000000)
 			.addField(`${loot.description}`, 'Enjoy your loot!')
 			.setThumbnail(`${thumbURL}`)
-			.setFooter(`Enjoy your loot!`)
 		return botresponse;
 	};
 
