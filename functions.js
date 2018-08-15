@@ -97,6 +97,7 @@ module.exports = function (client) {
 
 	functions.getLeaderboard = function(message) {
 		const leaderboard = client.firstdata.array().sort((a,b) => a.firsts < b.firsts);
+		console.log(leaderboard);
 		let count = 0;
 		const botresponse = new client.discord.RichEmbed()
 			  .setTitle("Leaderboard")
