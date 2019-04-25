@@ -9,7 +9,7 @@ exports.run = (client, message, args) => {
 
 	client.firstdata.setProp(key, 'coins', totalCoins-100);
 
-	const botresponse = `The pact is sealed, ${user}, you have **${totalCoins - 100}** schmeckle${totalCoins-100 > 1 ? 's' : ''} remaining. https://www.youtube.com/watch?v=QVw5mnRI8Zw`;
+	const botresponse = `The pact is sealed, ${user}. You have **${totalCoins - 100}** schmeckle${totalCoins-100 > 1 ? 's' : ''} remaining. https://www.youtube.com/watch?v=QVw5mnRI8Zw`;
 
 	message.channel.send(botresponse);
 
